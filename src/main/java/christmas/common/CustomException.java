@@ -8,11 +8,11 @@ public class CustomException extends IllegalArgumentException {
 
     public CustomException() {
 
-        super(ERROR_PREFIX + ErrorMessages.INVALID_ORDER.getMessage());
+        super(String.join(" ", ERROR_PREFIX, ErrorMessages.INVALID_ORDER.getMessage()));
     }
 
     public CustomException(String message) {
 
-        super(ERROR_PREFIX + message);
+        super(String.join(" ", ERROR_PREFIX, message));
     }
 }

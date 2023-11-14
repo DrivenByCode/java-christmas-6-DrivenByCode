@@ -3,13 +3,13 @@ package christmas.utils;
 import christmas.common.CustomException;
 import christmas.common.enums.ErrorMessages;
 import christmas.common.enums.Menu;
-import christmas.model.OrderItem;
+import christmas.model.OrderInfo;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Validations {
-    private static void validateItem(OrderItem item) {
+    private static void validateItem(OrderInfo item) {
         if (!Menu.hasName(item.getName())) {
             throw new CustomException();
         }
@@ -41,13 +41,13 @@ public class Validations {
         }
     }
 
-    public void validateOrder(final List<OrderItem> orderItems) {
-        if (orderItems.stream().mapToInt(OrderItem::getQuantity).sum() > 20) {
+    public void validateOrder(final List<OrderInfo> orderItems) {
+        if (orderItems.stream().mapToInt(OrderInfo::getQuantity).sum() > 20) {
             throw new CustomException(ErrorMessages.ORDER_QUANTITY.getMessage());
         }
 
         Set<String> uniqueMenuNames = orderItems.stream()
-                .map(OrderItem::getName)
+                .map(OrderInfo::getName)
                 .collect(Collectors.toSet());
         if (uniqueMenuNames.size() != orderItems.size()) {
             throw new CustomException(ErrorMessages.INVALID_ORDER.getMessage());
@@ -57,7 +57,7 @@ public class Validations {
             throw new CustomException(ErrorMessages.ONLY_BEVERAGE.getMessage());
         }
 
-        for (OrderItem item : orderItems) {
+        for (OrderInfo item : orderItems) {
             validateItem(item);
         }
     }
