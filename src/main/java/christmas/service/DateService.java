@@ -26,7 +26,6 @@ public class DateService {
         int weekdayDessertDiscount = calculateWeekdayDessertDiscount(dayOfTheWeek, orderItems);
         int weekendMainDiscount = calculateWeekendMainDiscount(dayOfTheWeek, orderItems);
         int specialDiscount = isSpecialDay ? SPECIAL_DISCOUNT : 0;
-        int totalDiscount = dailyDiscount + weekdayDessertDiscount + weekendMainDiscount + specialDiscount;
 
         boolean isChampagneApplicable = totalOrderAmount >= CHAMPAGNE_THRESHOLD;
 
@@ -56,11 +55,11 @@ public class DateService {
     }
 
     private boolean isWeekday(int dayOfTheWeek) {
-        return dayOfTheWeek >= 0 && dayOfTheWeek <= 3; // 일요일(0)부터 목요일(3)
+        return dayOfTheWeek >= 0 && dayOfTheWeek <= 3;
     }
 
     private boolean isWeekend(int dayOfTheWeek) {
-        return dayOfTheWeek == 4 || dayOfTheWeek == 5; // 금요일(4), 토요일(5)
+        return dayOfTheWeek == 4 || dayOfTheWeek == 5;
     }
 
     private int countDessertItems(List<OrderInfo> orderItems) {
@@ -78,8 +77,8 @@ public class DateService {
     }
 
     private boolean checkIfSpecialDay(int dayOfMonth) {
-        Set<Integer> specialDays = new HashSet<>(Arrays.asList(3, 10, 17, 24, 25, 31)); // 특별한 날짜 예시
+        Set<Integer> specialDays = new HashSet<>(Arrays.asList(3, 10, 17, 24, 25, 31));
         return specialDays.contains(dayOfMonth);
     }
-    
+
 }
