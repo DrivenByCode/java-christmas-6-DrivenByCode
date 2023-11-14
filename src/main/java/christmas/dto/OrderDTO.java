@@ -1,22 +1,22 @@
 package christmas.dto;
 
-import christmas.model.OrderItem;
+import christmas.model.OrderInfo;
 import java.util.List;
 
 public class OrderDTO {
-    private List<OrderItem> orderItems;
+    private List<OrderInfo> orderItems;
     private int totalPrice;
 
-    public OrderDTO(final List<OrderItem> orderItems, int totalPrice) {
+    public OrderDTO(final List<OrderInfo> orderItems, int totalPrice) {
         this.orderItems = orderItems;
         this.totalPrice = totalPrice;
     }
 
-    public List<OrderItem> getOrderItems() {
+    public List<OrderInfo> getOrderItems() {
         return orderItems;
     }
 
-    public void setOrderItems(final List<OrderItem> orderItems) {
+    public void setOrderItems(final List<OrderInfo> orderItems) {
         this.orderItems = orderItems;
     }
 
