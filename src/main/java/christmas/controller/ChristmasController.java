@@ -63,8 +63,7 @@ public class ChristmasController {
     }
 
     private void processDiscounts(DateDTO dateDTO, OrderDTO orderDTO) {
-        int totalOrderPrice = orderDTO.getTotalPrice();
-        DiscountInfo discountInfo = dateService.calculateDiscounts(dateDTO, totalOrderPrice, orderDTO.getOrderItems());
+        DiscountInfo discountInfo = dateService.calculateDiscounts(dateDTO);
         OrderSummary orderSummary = orderService.calculateOrderSummary(orderDTO, discountInfo);
         viewManager.displayOutput(dateDTO, orderDTO, orderSummary);
     }

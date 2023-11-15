@@ -1,40 +1,30 @@
 package christmas.model;
 
 public class DiscountInfo {
-    private final int dailyDiscount;
-    private final int weekdayDessertDiscount;
-    private final int weekendMainDiscount;
-    private final int specialDiscount;
-    private final boolean champagneApplicable;
+    private final int[] discounts;
+    private final boolean[] discountTypes;
 
-    public DiscountInfo(int dailyDiscount, int weekdayDessertDiscount, int weekendMainDiscount, int specialDiscount,
-                        boolean champagneApplicable) {
-        this.dailyDiscount = dailyDiscount;
-        this.weekdayDessertDiscount = weekdayDessertDiscount;
-        this.weekendMainDiscount = weekendMainDiscount;
-        this.specialDiscount = specialDiscount;
-        this.champagneApplicable = champagneApplicable;
+    public DiscountInfo(int[] discounts, boolean[] discountTypes) {
+        this.discounts = discounts;
+        this.discountTypes = discountTypes;
     }
 
     // 각 필드에 대한 getter 메서드를 제공할 수 있습니다.
     public int getDailyDiscount() {
-        return dailyDiscount;
-    }
-
-    public int getWeekdayDessertDiscount() {
-        return weekdayDessertDiscount;
-    }
-
-    public int getWeekendMainDiscount() {
-        return weekendMainDiscount;
+        return discounts[0];
     }
 
     public int getSpecialDiscount() {
-        return specialDiscount;
+        return discounts[1];
     }
 
-    public boolean isChampagneApplicable() {
-        return champagneApplicable;
+    public boolean isWeekendMainDiscount() {
+        return discountTypes[0];
     }
+
+    public boolean isWeekdayDessertDiscount() {
+        return discountTypes[1];
+    }
+
 }
 
