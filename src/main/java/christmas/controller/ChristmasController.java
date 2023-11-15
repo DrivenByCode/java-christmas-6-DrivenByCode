@@ -11,30 +11,23 @@ import christmas.model.OrderModel;
 import christmas.service.DateService;
 import christmas.service.OrderService;
 import christmas.utils.OrderParser;
-import christmas.utils.Validations;
-import christmas.view.InputView;
-import christmas.view.OutputView;
+import christmas.view.ViewManager;
 import java.util.List;
 
 public class ChristmasController {
-    private final InputView inputView;
-    private final Validations validations;
     private final DateService dateService;
     private final OrderService orderService;
-    private final OutputView outputView;
+    private final ViewManager viewManager;
 
     private DateDTO dateDTO;
     private OrderDTO orderDTO;
 
-    public ChristmasController(final InputView inputView, final Validations validations,
-                               final DateService dateService, final OrderService orderService,
-                               final OutputView outputView) {
+    public ChristmasController(final ViewManager viewManager, final DateService dateService,
+                               final OrderService orderService) {
         System.out.println(ServiceMessages.FIRST_MSG.getMessage());
-        this.inputView = inputView;
-        this.validations = validations;
+        this.viewManager = viewManager;
         this.dateService = dateService;
         this.orderService = orderService;
-        this.outputView = outputView;
     }
 
     public void run() {
@@ -46,11 +39,9 @@ public class ChristmasController {
     private DateDTO processReservationDate() {
         while (true) {
             try {
-                String input = inputView.readDate();
-                validations.isDateNumber(input);
-                validations.isDateInRange(input);
-                DateDTO dateDTO = DateInfo.createDateDTO(input);
-                return dateDTO;
+                String input = viewManager.getDate();
+                viewManager.validateDate(input);
+                return DateInfo.createDateDTO(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -60,10 +51,9 @@ public class ChristmasController {
     private OrderDTO processOrderInput() {
         while (true) {
             try {
-                String input = inputView.readMenu();
-                validations.hasMenuValidCharacters(input);
+                String input = viewManager.getOrders();
+                viewManager.validateOrder(input);
                 List<OrderInfo> orderItems = OrderParser.parseOrder(input);
-                validations.validateOrder(orderItems);
                 return OrderModel.createOrderDTO(orderItems);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -75,7 +65,6 @@ public class ChristmasController {
         int totalOrderAmount = orderDTO.getTotalPrice();
         DiscountInfo discountInfo = dateService.calculateDiscounts(dateDTO, totalOrderAmount, orderDTO.getOrderItems());
         OrderSummary orderSummary = orderService.calculateOrderSummary(orderDTO, discountInfo);
-        outputView.displayOrderSummary(dateDTO, orderDTO, orderSummary);
+        viewManager.displayOutput(dateDTO, orderDTO, orderSummary);
     }
-
 }

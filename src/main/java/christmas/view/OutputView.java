@@ -1,6 +1,6 @@
 package christmas.view;
 
-import christmas.common.enums.Menu;
+import christmas.common.enums.DiscountType;
 import christmas.dto.DateDTO;
 import christmas.dto.OrderDTO;
 import christmas.dto.OrderSummary;
@@ -12,7 +12,8 @@ public class OutputView {
         System.out.printf("12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n", dateDTO.getDate());
         System.out.println("\n<주문 메뉴>");
         for (OrderInfo orderItem : orderDTO.getOrderItems()) {
-            System.out.println(orderItem.getName() + " " + MoneyFormatter.format(orderItem.getQuantity()) + "개");
+            System.out.println(
+                    String.join(" ", orderItem.getName(), MoneyFormatter.format(orderItem.getQuantity()) + "개"));
         }
     }
 
@@ -31,42 +32,39 @@ public class OutputView {
         System.out.println("\n<증정 메뉴>");
         if (orderSummary.isChampagneApplicable()) {
             System.out.println("샴페인 1개");
-        } else {
-            System.out.println("없음");
+            return;
         }
+        System.out.println("없음");
     }
 
     private void displayDiscountDetails(OrderSummary orderSummary) {
         System.out.println("\n<혜택 내역>");
         boolean hasDiscounts = false;
-        if (orderSummary.getDailyDiscount() > 0) {
-            System.out.println("크리스마스 디데이 할인: -" + MoneyFormatter.format(orderSummary.getDailyDiscount()) + "원");
-            hasDiscounts = true;
+
+        for (DiscountType discountType : DiscountType.values()) {
+            if (discountType.isApplicable(orderSummary)) {
+                System.out.println(discountType.getMessage(orderSummary));
+                hasDiscounts = true;
+            }
         }
-        if (orderSummary.getWeekdayDessertDiscount() > 0) {
-            System.out.println("평일 할인: -" + MoneyFormatter.format(orderSummary.getWeekdayDessertDiscount()) + "원");
-            hasDiscounts = true;
-        }
-        if (orderSummary.getSpecialDiscount() > 0) {
-            System.out.println("특별 할인: -" + MoneyFormatter.format(orderSummary.getSpecialDiscount()) + "원");
-            hasDiscounts = true;
-        }
-        if (orderSummary.isChampagneApplicable()) {
-            System.out.printf("증정 이벤트: -%s원", MoneyFormatter.format(Menu.CHAMPAGNE.getPrice()));
-            hasDiscounts = true;
-        }
+
         if (!hasDiscounts) {
             System.out.println("없음");
         }
     }
 
     private void displayTotalDiscount(OrderSummary orderSummary) {
-        if (orderSummary.getTotalDiscount() == 0) {
-            System.out.println("\n<총혜택 금액>\n" + 0 + "원");
-            return;
-        }
-        System.out.println("\n<총혜택 금액>\n-" + MoneyFormatter.format(orderSummary.getTotalDiscount()) + "원");
+        String discountDisplay = getFormattedDiscount(orderSummary.getTotalDiscount());
+        System.out.println("\n<총혜택 금액>\n" + discountDisplay);
     }
+
+    private String getFormattedDiscount(int totalDiscount) {
+        if (totalDiscount == 0) {
+            return "0원";
+        }
+        return "-" + MoneyFormatter.format(totalDiscount) + "원";
+    }
+
 
     private void displayFinalAmount(OrderSummary orderSummary) {
         System.out.println("\n<할인 후 예상 결제 금액>\n" + MoneyFormatter.format(orderSummary.getFinalAmount()) + "원");
