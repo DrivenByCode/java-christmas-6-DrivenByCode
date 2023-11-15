@@ -103,14 +103,10 @@
   - [x] 주말 할인 여부 - testWeekendDiscount
   - [x] 특별 할인 금액 - testStarDiscountAmount
   - [x] 크리스마스 디데이 할인 금액 - testChristmasDayDiscountAmount
-- [ ] OrderServiceTest
-  - [ ] 만원 이상 주문 여부
-  - [ ] 평일 디저트 할인 금액 계산
-  - [ ] 주말 메인 할인 금액 계산
-  - [ ] 총 혜택 금액 계산
-  - [ ] 할인 후 최종 가격 계산
-  - [ ] 받을 수 있는 뱃지 종류 산출
-
-## ✅ 기능 완성 후
-
-- [ ] main 브랜치로 merge
+- [x] OrderServiceTest
+  - [x] 만원 이상 주문 여부
+  - [x] 평일 디저트 할인 금액 계산
+  - [x] 주말 메인 할인 금액 계산
+  - [x] 총 혜택 금액 계산
+  - [x] 할인 후 최종 가격 계산
+  - [x] 받을 수 있는 뱃지 산출
