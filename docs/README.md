@@ -85,17 +85,17 @@
 
 - [x] InputViewTest
   - [x] 방문일 입력
-    - [x] 영문 입력시 에러
-    - [x] 한글 입력시 에러
-    - [x] 특수 문자 입력시 에러
-    - [x] 0 입력시 에러 (올바르지 않은 숫자1)
-    - [x] 32 입력시 에러 (올바르지 않은 숫자2)
-    - [x] -1000 입력시 에러 (올바르지 않은 숫자3)
+    - [x] 영문 입력시 에러 - testInputtingEnglishOnDate
+    - [x] 한글 입력시 에러 - testInputtingKoreanOnDate
+    - [x] 특수 문자 입력시 에러 - testInputtingSpecialCharacterOnDate
+    - [x] 0 입력시 에러 (올바르지 않은 숫자1) - testInvalidNumberOnDate_1
+    - [x] 32 입력시 에러 (올바르지 않은 숫자2) - testInvalidNumberOnDate_2
+    - [x] -1000 입력시 에러 (올바르지 않은 숫자3) - testInvalidNumberOnDate_3
   - [x] 주문 입력
-    - [x] 중복 주문 시 에러
-    - [x] 존재 하지 않은 메뉴 입력 시 에러
-    - [x] 어떤 메뉴를 1개 미만 주문 시 에러
-    - [x] 한 주문 당 20개 초과 주문시 에러
+    - [x] 중복 주문 시 에러 - testDuplicatedOrder
+    - [x] 존재 하지 않은 메뉴 입력 시 에러 - testNotExistMenuOnOrder
+    - [x] 어떤 메뉴를 1개 미만 주문 시 에러 - testInvalidQuantityOnOrder
+    - [x] 한 주문 당 20개 초과 주문시 에러 - testOverQuantityOnOrder
 
 - [x] DateServiceTest
   - [x] 별이 있는 날인지 여부 (1000원 할인) - testStarDayDiscount
