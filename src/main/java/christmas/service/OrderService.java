@@ -11,6 +11,10 @@ import java.util.List;
 
 public class OrderService {
 
+    public String determineEventBadge(int totalDiscount) {
+        return EventBadge.determineEventBadge(totalDiscount);
+    }
+
     public OrderSummary calculateOrderSummary(OrderDTO orderDTO, DiscountInfo discountInfo) {
         int totalPrice = orderDTO.getTotalPrice();
         boolean isEligibleForChampagne = totalPrice >= DiscountConstants.CHAMPAGNE_THRESHOLD;
@@ -71,11 +75,6 @@ public class OrderService {
                 .filter(item -> Menu.isMainDish(item.getName()))
                 .mapToInt(OrderInfo::getQuantity)
                 .sum();
-    }
-
-
-    private String determineEventBadge(int totalDiscount) {
-        return EventBadge.determineEventBadge(totalDiscount);
     }
 }
 
