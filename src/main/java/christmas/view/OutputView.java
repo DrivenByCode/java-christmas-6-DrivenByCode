@@ -67,7 +67,7 @@ public class OutputView {
 
 
     private void displayFinalAmount(OrderSummary orderSummary) {
-        System.out.println("\n<할인 후 예상 결제 금액>\n" + MoneyFormatter.format(orderSummary.getFinalAmount()));
+        System.out.println("\n<할인 후 예상 결제 금액>\n" + MoneyFormatter.format(orderSummary.getFinalPrice()));
     }
 
     private void displayEventBadge(OrderSummary orderSummary) {
