@@ -4,10 +4,10 @@ import christmas.model.OrderInfo;
 import java.util.List;
 
 public class OrderDTO {
-    private List<OrderInfo> orderItems;
-    private int totalPrice;
+    private final List<OrderInfo> orderItems;
+    private final int totalPrice;
 
-    public OrderDTO(final List<OrderInfo> orderItems, int totalPrice) {
+    public OrderDTO(final List<OrderInfo> orderItems, final int totalPrice) {
         this.orderItems = orderItems;
         this.totalPrice = totalPrice;
     }
@@ -16,15 +16,9 @@ public class OrderDTO {
         return orderItems;
     }
 
-    public void setOrderItems(final List<OrderInfo> orderItems) {
-        this.orderItems = orderItems;
-    }
 
     public int getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(final int totalPrice) {
-        this.totalPrice = totalPrice;
-    }
 }

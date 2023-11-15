@@ -9,7 +9,6 @@ public class DiscountInfo {
         this.discountTypes = discountTypes;
     }
 
-    // 각 필드에 대한 getter 메서드를 제공할 수 있습니다.
     public int getDailyDiscount() {
         return discounts[0];
     }
