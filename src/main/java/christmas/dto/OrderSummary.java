@@ -1,33 +1,32 @@
 package christmas.dto;
 
-import christmas.model.DiscountInfo;
-
 public class OrderSummary {
-    private final int totalOrderAmount;
+    private final int totalPrice;
     private final int dailyDiscount;
     private final int weekdayDessertDiscount;
     private final int weekendMainDiscount;
     private final int specialDiscount;
     private final int totalDiscount;
-    private final int finalAmount;
+    private final int finalPrice;
     private final String eventBadge;
     private final boolean champagneApplicable;
 
-    public OrderSummary(int totalOrderAmount, DiscountInfo discountInfo, int totalDiscount, int finalAmount,
+    public OrderSummary(int totalPrice, int dailyDiscount, int weekdayDessertDiscount, int weekendMainDiscount,
+                        int specialDiscount, int totalDiscount, int finalPrice,
                         String eventBadge, boolean champagneApplicable) {
-        this.totalOrderAmount = totalOrderAmount;
-        this.dailyDiscount = discountInfo.getDailyDiscount();
-        this.weekdayDessertDiscount = discountInfo.getWeekdayDessertDiscount();
-        this.weekendMainDiscount = discountInfo.getWeekendMainDiscount();
-        this.specialDiscount = discountInfo.getSpecialDiscount();
+        this.totalPrice = totalPrice;
+        this.dailyDiscount = dailyDiscount;
+        this.weekdayDessertDiscount = weekdayDessertDiscount;
+        this.weekendMainDiscount = weekendMainDiscount;
+        this.specialDiscount = specialDiscount;
         this.totalDiscount = totalDiscount;
-        this.finalAmount = finalAmount;
+        this.finalPrice = finalPrice;
         this.eventBadge = eventBadge;
         this.champagneApplicable = champagneApplicable;
     }
 
-    public int getTotalOrderAmount() {
-        return totalOrderAmount;
+    public int getTotalPrice() {
+        return totalPrice;
     }
 
     public int getDailyDiscount() {
@@ -50,8 +49,8 @@ public class OrderSummary {
         return totalDiscount;
     }
 
-    public int getFinalAmount() {
-        return finalAmount;
+    public int getFinalPrice() {
+        return finalPrice;
     }
 
     public String getEventBadge() {
