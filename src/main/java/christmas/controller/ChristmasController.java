@@ -37,10 +37,10 @@ public class ChristmasController {
     }
 
     private DateDTO processReservationDate() {
+        System.out.println(ServiceMessages.VISTED_DAY.getMessage());
         while (true) {
             try {
                 String input = viewManager.getDate();
-                viewManager.validateDate(input);
                 return DateInfo.createDateDTO(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -49,21 +49,22 @@ public class ChristmasController {
     }
 
     private OrderDTO processOrderInput() {
+        System.out.println(ServiceMessages.ORDER_MENU.getMessage());
         while (true) {
             try {
                 String input = viewManager.getOrders();
-                viewManager.validateOrder(input);
                 List<OrderInfo> orderItems = OrderParser.parseOrder(input);
                 return OrderModel.createOrderDTO(orderItems);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+
     }
 
     private void processDiscounts(DateDTO dateDTO, OrderDTO orderDTO) {
-        int totalOrderAmount = orderDTO.getTotalPrice();
-        DiscountInfo discountInfo = dateService.calculateDiscounts(dateDTO, totalOrderAmount, orderDTO.getOrderItems());
+        int totalOrderPrice = orderDTO.getTotalPrice();
+        DiscountInfo discountInfo = dateService.calculateDiscounts(dateDTO, totalOrderPrice, orderDTO.getOrderItems());
         OrderSummary orderSummary = orderService.calculateOrderSummary(orderDTO, discountInfo);
         viewManager.displayOutput(dateDTO, orderDTO, orderSummary);
     }

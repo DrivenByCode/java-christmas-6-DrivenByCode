@@ -1,16 +1,24 @@
 package christmas.view;
 
-import camp.nextstep.edu.missionutils.Console;
-import christmas.common.enums.ServiceMessages;
+import christmas.utils.Validations;
 
 public class InputView {
+    private static final Validations validations = new Validations();
+    private final InputProvider inputProvider;
+
+    public InputView(InputProvider inputProvider) {
+        this.inputProvider = inputProvider;
+    }
+
     public String readDate() {
-        System.out.println(ServiceMessages.VISTED_DAY.getMessage());
-        return Console.readLine();
+        String input = inputProvider.readLine();
+        validations.validateDate(input);
+        return input;
     }
 
     public String readMenu() {
-        System.out.println(ServiceMessages.ORDER_MENU.getMessage());
-        return Console.readLine();
+        String input = inputProvider.readLine();
+        validations.validateOrderInput(input);
+        return input;
     }
 }
