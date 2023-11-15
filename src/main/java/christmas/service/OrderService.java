@@ -1,5 +1,6 @@
 package christmas.service;
 
+import christmas.common.enums.EventBadge;
 import christmas.dto.OrderDTO;
 import christmas.dto.OrderSummary;
 import christmas.model.DiscountInfo;
@@ -26,22 +27,13 @@ public class OrderService {
                 discountInfo.getWeekendMainDiscount() +
                 discountInfo.getSpecialDiscount();
         if (isEligibleForChampagne) {
-            totalDiscount += 25000; // 샴페인 증정 이벤트
+            totalDiscount += 25_000; // 샴페인 증정 이벤트
         }
         return totalDiscount;
     }
 
     private String determineEventBadge(int totalDiscount) {
-        if (totalDiscount >= 20_000) {
-            return "산타";
-        }
-        if (totalDiscount >= 10_000) {
-            return "트리";
-        }
-        if (totalDiscount >= 5_000) {
-            return "별";
-        }
-        return "없음";
+        return EventBadge.determineEventBadge(totalDiscount);
     }
 }
 
