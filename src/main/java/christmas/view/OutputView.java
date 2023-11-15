@@ -13,13 +13,13 @@ public class OutputView {
         System.out.println("\n<주문 메뉴>");
         for (OrderInfo orderItem : orderDTO.getOrderItems()) {
             System.out.println(
-                    String.join(" ", orderItem.getName(), MoneyFormatter.format(orderItem.getQuantity()) + "개"));
+                    String.join(" ", orderItem.getName(), orderItem.getQuantity() + "개"));
         }
     }
 
     public void displayOrderSummary(DateDTO dateDTO, OrderDTO orderDTO, OrderSummary orderSummary) {
         displayOrderedItems(dateDTO, orderDTO);
-        System.out.println("\n<할인 전 총주문 금액>\n" + MoneyFormatter.format(orderDTO.getTotalPrice()) + "원");
+        System.out.println("\n<할인 전 총주문 금액>\n" + MoneyFormatter.format(orderDTO.getTotalPrice()));
 
         displayGiftItem(orderSummary);
         displayDiscountDetails(orderSummary);
@@ -62,15 +62,15 @@ public class OutputView {
         if (totalDiscount == 0) {
             return "0원";
         }
-        return "-" + MoneyFormatter.format(totalDiscount) + "원";
+        return "-" + MoneyFormatter.format(totalDiscount);
     }
 
 
     private void displayFinalAmount(OrderSummary orderSummary) {
-        System.out.println("\n<할인 후 예상 결제 금액>\n" + MoneyFormatter.format(orderSummary.getFinalAmount()) + "원");
+        System.out.println("\n<할인 후 예상 결제 금액>\n" + MoneyFormatter.format(orderSummary.getFinalAmount()));
     }
 
     private void displayEventBadge(OrderSummary orderSummary) {
-        System.out.println("\n<12월 이벤트 배지>\n" + orderSummary.getEventBadge());
+        System.out.print("\n<12월 이벤트 배지>\n" + orderSummary.getEventBadge());
     }
 }

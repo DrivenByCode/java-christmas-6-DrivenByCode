@@ -12,7 +12,7 @@ public enum DiscountType {
 
         @Override
         public String getMessage(OrderSummary summary) {
-            return "크리스마스 디데이 할인: -" + MoneyFormatter.format(summary.getDailyDiscount()) + "원";
+            return "크리스마스 디데이 할인: -" + MoneyFormatter.format(summary.getDailyDiscount());
         }
     },
     WEEKDAY_DESSERT_DISCOUNT {
@@ -23,7 +23,7 @@ public enum DiscountType {
 
         @Override
         public String getMessage(OrderSummary summary) {
-            return "평일 할인: -" + MoneyFormatter.format(summary.getWeekdayDessertDiscount()) + "원";
+            return "평일 할인: -" + MoneyFormatter.format(summary.getWeekdayDessertDiscount());
         }
     },
     SPECIAL_DISCOUNT {
@@ -34,7 +34,7 @@ public enum DiscountType {
 
         @Override
         public String getMessage(OrderSummary summary) {
-            return "특별 할인: -" + MoneyFormatter.format(summary.getSpecialDiscount()) + "원";
+            return "특별 할인: -" + MoneyFormatter.format(summary.getSpecialDiscount());
         }
     },
     CHAMPAGNE_APP {
@@ -45,7 +45,7 @@ public enum DiscountType {
 
         @Override
         public String getMessage(OrderSummary summary) {
-            return "증정 이벤트: -" + MoneyFormatter.format(Menu.CHAMPAGNE.getPrice()) + "원";
+            return "증정 이벤트: -" + MoneyFormatter.format(Menu.CHAMPAGNE.getPrice());
         }
     };
 
