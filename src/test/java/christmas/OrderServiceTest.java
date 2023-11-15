@@ -50,7 +50,6 @@ class OrderServiceTest {
                 new OrderInfo("제로콜라", 1)
         );
 
-        // DiscountInfo 생성 (평일 디저트 할인 적용)
         DiscountInfo discountInfo = new DiscountInfo(new int[]{0, 0}, new boolean[]{false, true});
 
         OrderSummary orderSummary = service.calculateOrderSummary(new OrderDTO(orderItems, 20000), discountInfo);
@@ -68,7 +67,7 @@ class OrderServiceTest {
                 new OrderInfo("제로콜라", 1),
                 new OrderInfo("티본스테이크", 3)
         );
-        // DiscountInfo 생성 (평일 디저트 할인 적용)
+
         DiscountInfo discountInfo = new DiscountInfo(new int[]{0, 0}, new boolean[]{true, false});
 
         OrderSummary orderSummary = service.calculateOrderSummary(new OrderDTO(orderItems, 20000), discountInfo);
@@ -85,7 +84,7 @@ class OrderServiceTest {
                 new OrderInfo("제로콜라", 1),
                 new OrderInfo("티본스테이크", 3)
         );
-        // DiscountInfo 생성 (평일 디저트 할인 적용)
+
         DiscountInfo discountInfo = new DiscountInfo(new int[]{2000, 1000}, new boolean[]{false, true});
 
         OrderSummary orderSummary = service.calculateOrderSummary(new OrderDTO(orderItems, 20000), discountInfo);
@@ -102,7 +101,7 @@ class OrderServiceTest {
                 new OrderInfo("아이스크림", 1),
                 new OrderInfo("티본스테이크", 4)
         );
-        // DiscountInfo 생성 (평일 디저트 할인 적용)
+
         DiscountInfo discountInfo = new DiscountInfo(new int[]{2000, 1000}, new boolean[]{false, true});
 
         OrderSummary orderSummary = service.calculateOrderSummary(new OrderDTO(orderItems, 20000), discountInfo);
@@ -114,12 +113,11 @@ class OrderServiceTest {
     @Test
     void testEventBadgeDetermination() {
         OrderService service = new OrderService();
-        int totalDiscount = 5000; // 예시 할인 금액
+        int totalDiscount = 5000;
 
         String badge = service.determineEventBadge(totalDiscount);
 
-        // 가정: 특정 할인 금액에 따른 뱃지 산출 로직에 따라
-        String expectedBadge = "별"; // 예상되는 뱃지
+        String expectedBadge = "별";
         assertThat(badge).isEqualTo(expectedBadge);
     }
 }
