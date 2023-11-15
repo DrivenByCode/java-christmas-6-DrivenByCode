@@ -97,13 +97,19 @@
     - [x] 어떤 메뉴를 1개 미만 주문 시 에러
     - [x] 한 주문 당 20개 초과 주문시 에러
 
-- [ ] DateServiceTest
-  - [ ] D
+- [x] DateServiceTest
+  - [x] 별이 있는 날인지 여부 (1000원 할인) - testStarDayDiscount
+  - [x] 평일 할인 여부 - testWeekdayDiscount
+  - [x] 주말 할인 여부 - testWeekendDiscount
+  - [x] 특별 할인 금액 - testStarDiscountAmount
+  - [x] 크리스마스 디데이 할인 금액 - testChristmasDayDiscountAmount
 - [ ] OrderServiceTest
   - [ ] 만원 이상 주문 여부
-  - [ ] 크리스마스 디데이 할인 금액 계산
   - [ ] 평일 디저트 할인 금액 계산
-  - [ ] 
+  - [ ] 주말 메인 할인 금액 계산
+  - [ ] 총 혜택 금액 계산
+  - [ ] 할인 후 최종 가격 계산
+  - [ ] 받을 수 있는 뱃지 종류 산출
 
 ## ✅ 기능 완성 후
 

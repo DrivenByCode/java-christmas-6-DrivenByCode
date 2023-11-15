@@ -4,7 +4,7 @@ import christmas.common.enums.ServiceMessages;
 import christmas.dto.DateDTO;
 import christmas.dto.OrderDTO;
 import christmas.dto.OrderSummary;
-import christmas.model.DateInfo;
+import christmas.model.DateModel;
 import christmas.model.DiscountInfo;
 import christmas.model.OrderInfo;
 import christmas.model.OrderModel;
@@ -41,7 +41,7 @@ public class ChristmasController {
         while (true) {
             try {
                 String input = viewManager.getDate();
-                return DateInfo.createDateDTO(input);
+                return DateModel.createDateDTO(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
