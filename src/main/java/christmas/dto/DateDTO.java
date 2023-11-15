@@ -1,8 +1,8 @@
 package christmas.dto;
 
 public class DateDTO {
-    private int date;
-    private int DayOfTheWeek;
+    private final int date;
+    private final int DayOfTheWeek;
 
     public DateDTO(final int date, final int dayOfTheWeek) {
         this.date = date;
@@ -13,15 +13,8 @@ public class DateDTO {
         return date;
     }
 
-    public void setDate(final int date) {
-        this.date = date;
-    }
-
     public int getDayOfTheWeek() {
         return DayOfTheWeek;
     }
 
-    public void setDayOfTheWeek(final int dayOfTheWeek) {
-        DayOfTheWeek = dayOfTheWeek;
-    }
 }

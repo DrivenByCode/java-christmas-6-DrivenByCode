@@ -8,19 +8,19 @@ public class DateService {
 
     public DiscountInfo calculateDiscounts(DateDTO dateDTO) {
         int dayOfMonth = dateDTO.getDate();
-        int dayOfWeek = dateDTO.getDayOfTheWeek();
-        boolean isSpecialDay = checkIfSpecialDay(dayOfMonth);
+        int dayOfTheWeek = dateDTO.getDayOfTheWeek();
+        boolean isStarDay = checkIfStarDay(dayOfMonth);
 
         int dailyDiscount = calculateDailyDiscount(dayOfMonth);
-        int specialDiscount = 0;
-        if (isSpecialDay) {
-            specialDiscount = DiscountConstants.SPECIAL_DISCOUNT;
+        int starDiscount = 0;
+        if (isStarDay) {
+            starDiscount = DiscountConstants.SPECIAL_DISCOUNT;
         }
 
-        int[] discounts = {dailyDiscount, specialDiscount};
+        int[] discounts = {dailyDiscount, starDiscount};
 
-        boolean isWeekendMainDiscount = isWeekend(dayOfWeek);
-        boolean isWeekdayDessertDiscount = isWeekday(dayOfWeek);
+        boolean isWeekendMainDiscount = isWeekend(dayOfTheWeek);
+        boolean isWeekdayDessertDiscount = isWeekday(dayOfTheWeek);
 
         return new DiscountInfo(discounts, new boolean[]{isWeekendMainDiscount, isWeekdayDessertDiscount});
     }
@@ -33,14 +33,14 @@ public class DateService {
     }
 
     private boolean isWeekday(int dayOfTheWeek) {
-        return dayOfTheWeek >= 0 && dayOfTheWeek <= 3;
+        return dayOfTheWeek >= 0 && dayOfTheWeek <= 4;
     }
 
     private boolean isWeekend(int dayOfTheWeek) {
-        return dayOfTheWeek == 4 || dayOfTheWeek == 5;
+        return dayOfTheWeek == 5 || dayOfTheWeek == 6;
     }
 
-    private boolean checkIfSpecialDay(int dayOfMonth) {
+    private boolean checkIfStarDay(int dayOfMonth) {
         return DiscountConstants.SPECIAL_DAYS.contains(dayOfMonth);
     }
 }

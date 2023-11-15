@@ -14,7 +14,7 @@ public class DiscountInfo {
         return discounts[0];
     }
 
-    public int getSpecialDiscount() {
+    public int getStarDiscount() {
         return discounts[1];
     }
 
