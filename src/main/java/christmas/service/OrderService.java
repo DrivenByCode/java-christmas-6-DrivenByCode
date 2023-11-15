@@ -14,17 +14,18 @@ public class OrderService {
     public OrderSummary calculateOrderSummary(OrderDTO orderDTO, DiscountInfo discountInfo) {
         int totalPrice = orderDTO.getTotalPrice();
         boolean isEligibleForChampagne = totalPrice >= DiscountConstants.CHAMPAGNE_THRESHOLD;
-
-        if (totalPrice < DiscountConstants.DISCOUNT_THRESHOLD) {
-            return new OrderSummary(totalPrice, 0, 0,
+        boolean isDiscountApplicable = totalPrice > DiscountConstants.DISCOUNT_THRESHOLD;
+        if (!isDiscountApplicable) {
+            return new OrderSummary(0, 0,
                     0, 0, 0, totalPrice, "없음",
-                    isEligibleForChampagne);
+                    isEligibleForChampagne, isDiscountApplicable);
         }
 
         int weekdayDessertDiscount = 0;
         if (discountInfo.isWeekdayDessertDiscount()) {
             weekdayDessertDiscount = calculateWeekdayDessertDiscount(orderDTO.getOrderItems());
         }
+
         int weekendMainDiscount = 0;
         if (discountInfo.isWeekendMainDiscount()) {
             weekendMainDiscount = calculateWeekendMainDiscount(orderDTO.getOrderItems());
@@ -33,7 +34,7 @@ public class OrderService {
         int totalDiscount = discountInfo.getDailyDiscount() +
                 weekdayDessertDiscount +
                 weekendMainDiscount +
-                discountInfo.getSpecialDiscount();
+                discountInfo.getStarDiscount();
         if (isEligibleForChampagne) {
             totalDiscount += 25_000;
         }
@@ -45,9 +46,9 @@ public class OrderService {
 
         String eventBadge = determineEventBadge(totalDiscount);
 
-        return new OrderSummary(totalPrice, discountInfo.getDailyDiscount(), weekdayDessertDiscount,
-                weekendMainDiscount, discountInfo.getSpecialDiscount(), totalDiscount, finalPrice, eventBadge,
-                isEligibleForChampagne);
+        return new OrderSummary(discountInfo.getDailyDiscount(), weekdayDessertDiscount,
+                weekendMainDiscount, discountInfo.getStarDiscount(), totalDiscount, finalPrice, eventBadge,
+                isEligibleForChampagne, isDiscountApplicable);
     }
 
     private int calculateWeekdayDessertDiscount(List<OrderInfo> orderItems) {

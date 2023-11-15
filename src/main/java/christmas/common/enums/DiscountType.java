@@ -26,6 +26,18 @@ public enum DiscountType {
             return "평일 할인: -" + MoneyFormatter.format(summary.getWeekdayDessertDiscount());
         }
     },
+
+    WEEKEND_MAIN_DISCOUNT {
+        @Override
+        public boolean isApplicable(OrderSummary summary) {
+            return summary.getWeekendMainDiscount() > 0;
+        }
+
+        @Override
+        public String getMessage(OrderSummary summary) {
+            return "주말 할인: -" + MoneyFormatter.format(summary.getWeekendMainDiscount());
+        }
+    },
     SPECIAL_DISCOUNT {
         @Override
         public boolean isApplicable(OrderSummary summary) {

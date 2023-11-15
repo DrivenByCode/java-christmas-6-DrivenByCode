@@ -1,7 +1,6 @@
 package christmas.dto;
 
 public class OrderSummary {
-    private final int totalPrice;
     private final int dailyDiscount;
     private final int weekdayDessertDiscount;
     private final int weekendMainDiscount;
@@ -10,11 +9,11 @@ public class OrderSummary {
     private final int finalPrice;
     private final String eventBadge;
     private final boolean champagneApplicable;
+    private final boolean discountApplicable;
 
-    public OrderSummary(int totalPrice, int dailyDiscount, int weekdayDessertDiscount, int weekendMainDiscount,
+    public OrderSummary(int dailyDiscount, int weekdayDessertDiscount, int weekendMainDiscount,
                         int specialDiscount, int totalDiscount, int finalPrice,
-                        String eventBadge, boolean champagneApplicable) {
-        this.totalPrice = totalPrice;
+                        String eventBadge, boolean champagneApplicable, boolean discountApplicable) {
         this.dailyDiscount = dailyDiscount;
         this.weekdayDessertDiscount = weekdayDessertDiscount;
         this.weekendMainDiscount = weekendMainDiscount;
@@ -23,10 +22,7 @@ public class OrderSummary {
         this.finalPrice = finalPrice;
         this.eventBadge = eventBadge;
         this.champagneApplicable = champagneApplicable;
-    }
-
-    public int getTotalPrice() {
-        return totalPrice;
+        this.discountApplicable = discountApplicable;
     }
 
     public int getDailyDiscount() {
@@ -59,6 +55,10 @@ public class OrderSummary {
 
     public boolean isChampagneApplicable() {
         return champagneApplicable;
+    }
+
+    public boolean isDiscountApplicable() {
+        return discountApplicable;
     }
 }
 
